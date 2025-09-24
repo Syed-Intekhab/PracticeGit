@@ -12,6 +12,9 @@ namespace PracticeGit
         {
             // Print Hello, World!
             Console.WriteLine("Hello World!");
+
+            // Add another change
+            Console.WriteLine("Second Change in Git!");
         }
     }
 }

@@ -28,6 +28,9 @@ namespace PracticeGit
 
             // Adding this line in shaan/feature-greeting branch to make a conflict
             Console.WriteLine("Feature branch says hello!");
+
+            // Adding this line to check if it makes a pull request on github? this line present on main branch
+            Console.WriteLine("Try to pull a request!");
         }
     }
 }

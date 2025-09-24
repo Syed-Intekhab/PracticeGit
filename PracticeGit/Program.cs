@@ -25,6 +25,9 @@ namespace PracticeGit
 
             // Adding this line in main branch to make a conflict
             Console.WriteLine("Main branch says hello!");
+
+            // Adding this line in shaan/feature-greeting branch to make a conflict
+            Console.WriteLine("Feature branch says hello!");
         }
     }
 }

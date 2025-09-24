@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,9 @@ namespace PracticeGit
 
             // Add another change
             Console.WriteLine("Second Change in Git!");
+
+            // Checking Difference
+            Console.WriteLine("Third line of Git Learning!");
         }
     }
 }

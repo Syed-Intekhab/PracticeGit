@@ -26,6 +26,9 @@ namespace PracticeGit
 
             // Adding this line to check if it makes a pull request on github? this line present on main branch
             Console.WriteLine("Try to pull a request!");
+
+            // Deleted the branch shaan/feature-greeting after merging it to main branch
+            Console.WriteLine("This line is added after deleting the shaan/feature-greeting branch...");
         }
     }
 }

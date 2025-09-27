@@ -29,6 +29,9 @@ namespace PracticeGit
 
             // Deleted the branch shaan/feature-greeting after merging it to main branch
             Console.WriteLine("This line is added after deleting the shaan/feature-greeting branch...");
+
+            // Practice code from Syed Intekhab
+            Console.WriteLine("Hello World!");
         }
     }
 }

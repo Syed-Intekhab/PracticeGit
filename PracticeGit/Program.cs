@@ -43,13 +43,50 @@ namespace PracticeGit
             Console.WriteLine("Get these changes in another branch!");
 
             // Understood Everything
-            Console.WriteLine("Enter your name: ");
-            int age = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Enter your age: ");
+            int.TryParse(Console.ReadLine(), out int age);
 
             if (age > 17)
                 Console.WriteLine("You can vote!");
             else
                 Console.WriteLine("You can't vote!");
+
+            // Calculator Program In shaan/calculator-program Branch
+            Console.Write("Enter first number: ");
+            int.TryParse(Console.ReadLine(), out int num1);
+
+            Console.Write("Enter second number: ");
+            int.TryParse(Console.ReadLine(), out int num2);
+
+            Console.Write("Enter choice: ");
+            int.TryParse(Console.ReadLine(), out int choice);
+
+            Calculate(num1, num2, choice);
+        }
+
+        static void Calculate(int num1, int num2, int choice)
+        {
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine($"Addition of {num1} and {num2} is: {num1 + num2}");
+                    break;
+                case 2:
+                    Console.WriteLine($"Subtraction: {num1 - num2}");
+                    break;
+                case 3:
+                    Console.WriteLine($"Multiplication: {num1 * num2}");
+                    break;
+                case 4:
+                    if (num2 < 1)
+                        Console.WriteLine("Can not devide a number with zero!");
+                    else
+                        Console.WriteLine($"Division: {num1 / num2}");
+                    break;
+                default:
+                    Console.WriteLine("Invalid Choice!");
+                    break;
+            }
         }
     }
 }

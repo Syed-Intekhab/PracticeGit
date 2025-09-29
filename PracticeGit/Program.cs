@@ -38,6 +38,9 @@ namespace PracticeGit
 
             // Practuce pull request from another branch
             Console.WriteLine("Pull Request From Another Branch!");
+
+            // New changes in local master branch to pull changes in local shaan/feature-console branch
+            Console.WriteLine("Get these changes in another branch!");
         }
     }
 }

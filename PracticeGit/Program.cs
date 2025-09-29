@@ -41,6 +41,15 @@ namespace PracticeGit
 
             // New changes in local master branch to pull changes in local shaan/feature-console branch
             Console.WriteLine("Get these changes in another branch!");
+
+            // Understood Everything
+            Console.WriteLine("Enter your name: ");
+            int age = Convert.ToInt32(Console.ReadLine());
+
+            if (age > 17)
+                Console.WriteLine("You can vote!");
+            else
+                Console.WriteLine("You can't vote!");
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Remoting.Services;
 
 namespace PracticeGit
 {
@@ -62,6 +63,11 @@ namespace PracticeGit
             int.TryParse(Console.ReadLine(), out int choice);
 
             Calculate(num1, num2, choice);
+
+            // Even Odd Program In shaan/even-odd Branch
+            Console.WriteLine("Enter any number: ");
+            int.TryParse(Console.ReadLine(), out int num);
+            IsEven(num);
         }
 
         static void Calculate(int num1, int num2, int choice)
@@ -87,6 +93,15 @@ namespace PracticeGit
                     Console.WriteLine("Invalid Choice!");
                     break;
             }
+        }
+
+        // Method for checking if the number is even or odd
+        static void IsEven(int num)
+        {
+            if(num % 2 == 0)
+                Console.WriteLine($"{num} is even!");
+            else
+                Console.WriteLine($"{num} is odd!");
         }
     }
 }

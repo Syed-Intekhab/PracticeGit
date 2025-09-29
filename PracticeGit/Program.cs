@@ -95,6 +95,7 @@ namespace PracticeGit
             }
         }
 
+        // Method for checking if the number is even or odd
         static void IsEven(int num)
         {
             if(num % 2 == 0)

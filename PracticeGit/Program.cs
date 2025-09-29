@@ -35,6 +35,9 @@ namespace PracticeGit
 
             // Practice pull request from visual studio to github
             Console.WriteLine("Pull Request!");
+
+            // Practuce pull request from another branch
+            Console.WriteLine("Pull Request From Another Branch!");
         }
     }
 }

@@ -69,7 +69,7 @@ namespace PracticeGit
             switch (choice)
             {
                 case 1:
-                    Console.WriteLine($"Addition: {num1 + num2}");
+                    Console.WriteLine($"Addition of {num1} and {num2} is: {num1 + num2}");
                     break;
                 case 2:
                     Console.WriteLine($"Subtraction: {num1 - num2}");

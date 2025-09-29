@@ -29,6 +29,9 @@ namespace PracticeGit
 
             // Deleted the branch shaan/feature-greeting after merging it to main branch
             Console.WriteLine("This line is added after deleting the shaan/feature-greeting branch...");
+
+            // Again a commit for practice!
+            Console.WriteLine("Another line of code for git practice!");
         }
     }
 }

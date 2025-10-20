@@ -7,6 +7,14 @@ namespace StudentPortal.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        public static List<Student> students =
+        [
+            new() { Id = 1, Name = "Alice Johnson", Email = "alice@example.com", Course = "Computer Science" },
+            new() { Id = 2, Name = "Bob Smith", Email = "bob@example.com", Course = "Mathematics" },
+            new() { Id = 3, Name = "Charlie Brown", Email = "charlie@example.com", Course = "Physics" },
+            new() { Id = 4, Name = "Diana Prince", Email = "diana@example.com", Course = "Chemistry" }
+        ];
+
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -15,7 +23,7 @@ namespace StudentPortal.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return View(students);
         }
 
         public IActionResult Details()
@@ -26,6 +34,13 @@ namespace StudentPortal.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Student student)
+        {
+            students.Add(student);
+            return RedirectToAction("Index");
         }
 
         public IActionResult Privacy()

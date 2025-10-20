@@ -1,0 +1,27 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Create Student";
+}
+
+<h2>Create Student</h2>
+
+<form asp-action="Create" method="post">
+    @Html.LabelFor(m => m.Id)
+    @Html.TextBoxFor(m => m.Id, new { @class = "form-control" })
+    <br />
+
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new {@class = "form-control"})
+    <br />
+
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+    <br />
+
+    @Html.LabelFor(m => m.Course)
+    @Html.TextBoxFor(m => m.Course, new {@class = "form-control"})
+    <br />
+
+    <input type="submit" value="Submit" class="form-control"/>
+</form>

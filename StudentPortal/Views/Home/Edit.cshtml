@@ -1,0 +1,29 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "Edit Student";
+}
+
+<h2>Edit Student</h2>
+
+<form method="post">
+    @Html.HiddenFor(m => m.Id, new { @class = "form-control", @readonly = "readonly" })
+    <br />
+
+    @Html.LabelFor(m => m.Name)
+    @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @required = "true" })
+    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(m => m.Email)
+    @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @required = "true" })
+    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+    <br />
+
+    @Html.LabelFor(m => m.Course)
+    @Html.DropDownListFor(m => m.Course, new SelectList(new[] { "Web Development", "Physics", "English", "Computer Science" }, Model.Course), "--Select Course", new { @class = "form-control", @required = "true" })
+    @Html.ValidationMessageFor(m => m.Course, "", new { @class = "text-danger" })
+    <br />
+
+    <input type="submit" value="Submit" class="btn btn-info" />
+</form>

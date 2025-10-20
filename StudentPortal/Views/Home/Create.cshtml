@@ -8,20 +8,24 @@
 
 <form asp-action="Create" method="post">
     @Html.LabelFor(m => m.Id)
-    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @required = "true"  })
+    @Html.TextBoxFor(m => m.Id, new { @class = "form-control", @required = "true"  } )
+    @Html.ValidationMessageFor(m => m.Id, "", new { @class = "text-danger"})
     <br />
 
     @Html.LabelFor(m => m.Name)
-    @Html.TextBoxFor(m => m.Name, new {@class = "form-control", @required = "true" })
+    @Html.TextBoxFor(m => m.Name, new {@class = "form-control", @required = "true" } )
+    @Html.ValidationMessageFor(m => m.Name, "", new { @class = "text-danger" } )
     <br />
 
     @Html.LabelFor(m => m.Email)
-    @Html.TextBoxFor(m => m.Email, new {@class = "form-control", @required = "true" })
+    @Html.TextBoxFor(m => m.Email, new {@class = "form-control", @required = "true" } )
+    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger"} )
     <br />
 
     @Html.LabelFor(m => m.Course)
     @Html.DropDownListFor(m => m.Course, new SelectList(new[] { "Web Development", "Physics", "English", "Computer Science" }), "--Select Course", new { @class = "form-control", @required = "true" })
+    @Html.ValidationMessageFor(m => m.Course, "", new { @class = "text-danger"} )
     <br />
 
-    <input type="submit" value="Submit" class="form-control"/>
+    <input type="submit" value="Submit" class="btn btn-info"/>
 </form>

@@ -40,7 +40,14 @@ namespace StudentPortal.Controllers
         public IActionResult Create(Student student)
         {
             students.Add(student);
-            return RedirectToAction("Index");
+
+            if (ModelState.IsValid)
+            {
+                ModelState.Clear();
+                return RedirectToAction("Index");
+            }
+
+            return View();
         }
 
         public IActionResult Privacy()

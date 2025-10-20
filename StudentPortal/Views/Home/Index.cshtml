@@ -13,17 +13,19 @@
     }
 </style>
 
-<table border="1" cellpadding="10" cellspacing="10">
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Course</th>
-    </tr>
+<form action="@Url.ActionLink("Edit")">
+    <table border="1" cellpadding="10" cellspacing="10">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Course</th>
+            <th>Edit</th>
+        </tr>
     
-    @foreach (Student student in Model)
-    {
-        Html.RenderPartial("_StudentCard", student);
-    }
-
-</table>
+        @foreach (Student student in Model)
+        {
+            Html.RenderPartial("_StudentCard", student);
+        }
+    </table>
+</form>

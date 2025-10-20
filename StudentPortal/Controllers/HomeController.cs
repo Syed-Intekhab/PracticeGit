@@ -26,14 +26,55 @@ namespace StudentPortal.Controllers
             return View(students);
         }
 
-        public IActionResult Details()
+        public IActionResult Create()
         {
             return View();
         }
 
-        public IActionResult Create()
+        public IActionResult Edit(int Id)
         {
-            return View();
+            Student? foundStudent = null;
+
+            // Add views later for bad request and for not found!
+            if (Id <= 0 || !students.Any(s => s.Id == Id))
+            {
+                return RedirectToAction("Index");
+            }
+            else if (string.IsNullOrWhiteSpace(Id.ToString()))
+            {
+                return RedirectToAction("Index");
+            }
+
+            foreach(Student student in students)
+            {
+                if(student.Id == Id)
+                {
+                    foundStudent = student;
+                }
+            }
+
+            return View(foundStudent);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Student student)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            foreach(Student item in students)
+            {
+                if(student.Id == item.Id)
+                {
+                    item.Name = student.Name;
+                    item.Email = student.Email;
+                    item.Course = student.Course;
+                }
+            }
+
+            return RedirectToAction("Index");
         }
 
         [HttpPost]

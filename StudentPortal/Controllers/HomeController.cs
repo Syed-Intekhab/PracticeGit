@@ -18,6 +18,16 @@ namespace StudentPortal.Controllers
             return View();
         }
 
+        public IActionResult Details()
+        {
+            return View();
+        }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
         public IActionResult Privacy()
         {
             return View();

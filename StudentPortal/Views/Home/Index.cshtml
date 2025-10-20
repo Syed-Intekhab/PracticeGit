@@ -23,12 +23,7 @@
     
     @foreach (Student student in Model)
     {
-    <tr>
-        <td>@student.Id</td>
-        <td>@student.Name</td>
-        <td>@student.Email</td>
-        <td>@student.Course</td>
-    </tr>
+        Html.RenderPartial("_StudentCard", student);
     }
-    
+
 </table>

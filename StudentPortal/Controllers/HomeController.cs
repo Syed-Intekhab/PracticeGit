@@ -23,7 +23,7 @@ namespace StudentPortal.Controllers
 
         public IActionResult Index()
         {
-            return View(students);
+            return View(students.OrderBy(s => s.Id));
         }
 
         public IActionResult Create()

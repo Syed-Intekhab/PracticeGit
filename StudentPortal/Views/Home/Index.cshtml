@@ -1,4 +1,4 @@
-﻿@model List<Student>
+﻿@model IEnumerable<Student>
 
 @{
     ViewData["Title"] = "Home";
@@ -13,8 +13,10 @@
     }
 </style>
 
+<h1>All Students: </h1>
+
 <form action="@Url.ActionLink("Edit")">
-    <table border="1" cellpadding="10" cellspacing="10">
+    <table border="1" cellpadding="10" cellspacing="10" id="student-table">
         <tr>
             <th>Id</th>
             <th>Name</th>
@@ -29,3 +31,28 @@
         }
     </table>
 </form>
+
+<br />
+<hr />
+<br />
+
+<h2>Filter Students:</h2>
+
+<div>
+    <label for="courseFilter">Select Course:</label>
+    <select id="course-filter" name="course-filter">
+        <option value="">--Select Course</option>
+        <option value="Web Development">Web Development</option>
+        <option value="Physics">Physics</option>
+        <option value="English">English</option>
+        <option value="Computer Science">Computer Science</option>
+    </select>
+</div>
+
+<br />
+
+<form action="@Url.ActionLink("Edit")">
+    <table border="1" cellpadding="10" cellspacing="10" id="filtered-table"></table>
+</form>
+
+<script src="~/js/filter.js"></script>

@@ -23,6 +23,9 @@ namespace StudentPortal.Controllers
 
         public IActionResult Index()
         {
+            // This comment is in filter-student branch
+            ViewBag.Message = "Making a conflict!";
+
             // Test merge conflict
             ViewBag.CreateMergeConflict = "This line is coming from conflict-test branch!";
 

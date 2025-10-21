@@ -23,6 +23,9 @@ namespace StudentPortal.Controllers
 
         public IActionResult Index()
         {
+            // Test merge conflict
+            ViewBag.CreateMergeConflict = "This is to test merge conflicts in Git.";
+
             return View(students.OrderBy(s => s.Id));
         }
 

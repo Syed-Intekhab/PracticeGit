@@ -23,6 +23,10 @@ namespace StudentPortal.Controllers
 
         public IActionResult Index()
         {
+            // This comment is in filter-student branch
+            ViewBag.Message = "Making a conflict!";
+
+
             return View(students.OrderBy(s => s.Id));
         }
 

@@ -1,20 +1,48 @@
 using Microsoft.AspNetCore.Mvc;
 using StudentPortal.Models;
 using System.Diagnostics;
+using System.Transactions;
 
 namespace StudentPortal.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-        public static List<Student> students =
+        public static List<StudentViewModel> students =
         [
-            new() { Id = 1, Name = "Alice Johnson", Email = "alice@example.com", Course = "Computer Science" },
-            new() { Id = 2, Name = "Bob Smith", Email = "bob@example.com", Course = "Mathematics" },
-            new() { Id = 3, Name = "Charlie Brown", Email = "charlie@example.com", Course = "Physics" },
-            new() { Id = 4, Name = "Diana Prince", Email = "diana@example.com", Course = "Chemistry" }
+            new() {
+                StudentInfo = new()
+                {
+                    Id = 1,
+                    Name = "John Doe",
+                    Email = "john@example.com"
+                },
+                Courses = ["Math", "Science", "History", "Literature", "Art"],
+                IsTopStudent = false 
+            },
+            new()
+            {
+                StudentInfo = new()
+                {
+                    Id = 2,
+                    Name = "Jane Smith",
+                    Email = "jane@example.com"
+                },
+                Courses = ["Math", "Science", "History", "Literature", "Art"],
+                IsTopStudent = true
+            },
+            new()
+            {
+                StudentInfo = new()
+                {
+                    Id = 3,
+                    Name = "Alice Johnson",
+                    Email = "alice@example.com"
+                },
+                Courses = ["Math", "Science", "History", "Literature", "Art"],
+                IsTopStudent = false 
+            }
         ];
-
 
         public HomeController(ILogger<HomeController> logger)
         {
@@ -29,20 +57,15 @@ namespace StudentPortal.Controllers
             // Test merge conflict
             ViewBag.CreateMergeConflict = "This line is coming from conflict-test branch!";
 
-            return View(students.OrderBy(s => s.Id));
-        }
-
-        public IActionResult Create()
-        {
-            return View();
+            return View(students.OrderBy(s => s.StudentInfo.Id));
         }
 
         public IActionResult Edit(int Id)
         {
-            Student? foundStudent = null;
+            StudentViewModel foundStudent;
 
             // Add views later for bad request and for not found!
-            if (Id <= 0 || !students.Any(s => s.Id == Id))
+            if (Id <= 0)
             {
                 return RedirectToAction("Index");
             }
@@ -51,32 +74,13 @@ namespace StudentPortal.Controllers
                 return RedirectToAction("Index");
             }
 
-            foreach(Student student in students)
+            foreach(var student in students)
             {
-                if(student.Id == Id)
+                if(student.StudentInfo.Id == Id)
                 {
                     foundStudent = student;
-                }
-            }
 
-            return View(foundStudent);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(Student student)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
-
-            foreach(Student item in students)
-            {
-                if(student.Id == item.Id)
-                {
-                    item.Name = student.Name;
-                    item.Email = student.Email;
-                    item.Course = student.Course;
+                    return View(foundStudent);
                 }
             }
 
@@ -84,7 +88,40 @@ namespace StudentPortal.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create(Student student)
+        public IActionResult Edit(StudentViewModel student)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            foreach(var item in students)
+            {
+                if(student.StudentInfo.Id == item.StudentInfo.Id)
+                {
+                    item.StudentInfo.Name = student.StudentInfo.Name;
+                    item.StudentInfo.Email = student.StudentInfo.Email;
+                    item.Courses = student.Courses;
+                    item.IsTopStudent = student.IsTopStudent;
+                }
+            }
+
+            return RedirectToAction("Index");
+        }
+        public IActionResult Create()
+        {
+            var model = new StudentViewModel 
+            { 
+                StudentInfo = new Student(),
+                Courses = new List<string>(),
+                IsTopStudent = false
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult Create(StudentViewModel student)
         {
             students.Add(student);
 

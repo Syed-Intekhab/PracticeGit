@@ -1,9 +1,9 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
+﻿document.addEventListener('DOMContentLoaded', () => {
     const studentTable = document.getElementById('student-table');
     const filteredTable = document.getElementById('filtered-table');
     const courseFilter = document.getElementById('course-filter');
 
-    courseFilter.addEventListener('change', function () {
+    courseFilter.addEventListener('change', () => {
         let isStudentFound = false;
         let courseTableHTML = `
             <tr>
@@ -11,17 +11,22 @@
                 <th>Name</th>
                 <th>Email</th>
                 <th>Course</th>
+                <th>Is Top Student</th>
                 <th>Edit</th>
             </tr>
         `;
 
         studentTable.querySelectorAll('tr').forEach((row, idx) => {
             if (idx > 0) {
-                if (row.querySelectorAll('td')[3].textContent === courseFilter.value) {
-                    courseTableHTML += row.outerHTML;
+                let courseString = row.querySelectorAll('td')[3].textContent.split(", ");
 
-                    isStudentFound = true;
-                }
+                courseString.forEach((course) => {
+                    if (course.trim() === courseFilter.value) {
+                        courseTableHTML += row.outerHTML;
+
+                        isStudentFound = true;
+                    }
+                });
             }
         });
 

@@ -1,0 +1,41 @@
+﻿@model StudentViewModel
+
+@Html.LabelFor(m => m.StudentInfo.Name)
+@Html.TextBoxFor(m => m.StudentInfo.Name, new { @class = "form-control", @required = "true" })
+@Html.ValidationMessageFor(m => m.StudentInfo.Name, "", new { @class = "text-danger" })
+<br />
+
+@Html.LabelFor(m => m.StudentInfo.Email)
+@Html.TextBoxFor(m => m.StudentInfo.Email, new { @class = "form-control", @required = "true" })
+@Html.ValidationMessageFor(m => m.StudentInfo.Email, "", new { @class = "text-danger" })
+<br />
+
+@Html.LabelFor(m => m.Courses)
+<br />
+<input type="checkbox" name="Courses" value="Math" @(Model.Courses.Contains("Math") ? "checked" : "")/> Math
+<br />
+<input type="checkbox" name="Courses" value="Science" @(Model.Courses.Contains("Science") ? "checked" : "") /> Science
+<br />
+<input type="checkbox" name="Courses" value="History" @(Model.Courses.Contains("History") ? "checked" : "") /> History
+<br />
+<input type="checkbox" name="Courses" value="Physics" @(Model.Courses.Contains("Physics") ? "checked" : "") /> Physics
+<br />
+<input type="checkbox" name="Courses" value="Art" @(Model.Courses.Contains("Art") ? "checked" : "") /> Art
+<br />
+<input type="checkbox" name="Courses" value="Physical Education" @(Model.Courses.Contains("Physical Education") ? "checked" : "") /> Physical Education
+<br />
+<input type="checkbox" name="Courses" value="Computer Science" @(Model.Courses.Contains("Computer Science") ? "checked" : "") /> Computer Science
+<br />
+<input type="checkbox" name="Courses" value="English" @(Model.Courses.Contains("English") ? "checked" : "") /> English
+<br />
+<input type="checkbox" name="Courses" value="Web Development" @(Model.Courses.Contains("Web Development") ? "checked" : "") /> Web Development
+<br />
+@Html.ValidationMessageFor(m => m.Courses, "", new { @class = "text-danger" })
+<br />
+
+@Html.LabelFor(m => m.IsTopStudent)
+@Html.CheckBoxFor(m => m.IsTopStudent)
+<br />
+<br />
+
+<input type="submit" value="Submit" class="btn btn-info" />

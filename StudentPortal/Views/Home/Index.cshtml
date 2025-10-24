@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Student>
+﻿@model IEnumerable<StudentViewModel>
 
 @{
     ViewData["Title"] = "Home";
@@ -21,11 +21,12 @@
             <th>Id</th>
             <th>Name</th>
             <th>Email</th>
-            <th>Course</th>
+            <th>Courses</th>
+            <th>Is Top Student</th>
             <th>Edit</th>
         </tr>
     
-        @foreach (Student student in Model)
+        @foreach (var student in Model)
         {
             Html.RenderPartial("_StudentCard", student);
         }
@@ -46,6 +47,11 @@
         <option value="Physics">Physics</option>
         <option value="English">English</option>
         <option value="Computer Science">Computer Science</option>
+        <option value="Physical Education">Physical Education</option>
+        <option value="Art">Art</option>
+        <option value="History">History</option>
+        <option value="Science">Science</option>
+        <option value="Math">Math</option>
     </select>
 </div>
 

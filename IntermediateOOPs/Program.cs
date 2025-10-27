@@ -18,6 +18,7 @@ namespace IntermediateOOPs
                 Price = 1000000
             };
 
+            // Addiing this line to resolve comment of pr
             Console.WriteLine("Branch: " + car.Brand);
             Console.WriteLine("Model: " + car.Model);
             Console.WriteLine("Max Speed: " + car.MaxSpeed);

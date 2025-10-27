@@ -20,11 +20,11 @@ namespace IntermediateOOPs
 
             // Addiing this line to resolve comment of pr
             // This line is added to resolve the merge conflict
-            Console.WriteLine("Branch: " + car.Brand);
-            Console.WriteLine("Model: " + car.Model);
-            Console.WriteLine("Max Speed: " + car.MaxSpeed);
-            Console.WriteLine("Branch: " + car.Brand);
-            Console.WriteLine("Number of wheels: " + Car.NumberOfWheels);
+            Console.WriteLine($"Branch: {car.Brand}");
+            Console.WriteLine($"Model: {car.Model}");
+            Console.WriteLine($"Max Speed: {car.MaxSpeed}");
+            Console.WriteLine($"Branch: {car.Brand}");
+            Console.WriteLine($"Number of wheels: {Car.NumberOfWheels}");
         }
     }
 }

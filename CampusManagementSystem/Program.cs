@@ -4,9 +4,28 @@ namespace CampusManagementSystem
 {
     class Program
     {
-        public static List<string> _students = [];
-        public static int[] _studentMarks = new int[5];
-        public static int[] _studentAges = new int[5];
+        // Milestone 3
+        //public static List<string> _students = [];
+
+        // Milestone 4
+        //public static int[] _studentMarks = new int[5];
+        //public static int[] _studentAges = new int[5];
+
+        // Milestone 5
+        public static List<(string, int, int)> _students = [];
+
+        public struct Student(string name)
+        {
+            public string Name = name ?? "Unknown";
+            public int Age = -1;
+            public int RollNumber = -1;
+
+            // Constructor
+            //public Student(string name)
+            //{
+            //    this.Name = name;
+            //}
+        }
 
         public static void Main(string[] args)
         {
@@ -61,31 +80,67 @@ namespace CampusManagementSystem
             // Practice - Milestone 4
             #region
             // Handle Marks Input and Display
-            for (int i = 0; i < _studentMarks.Length; i++)
+            //for (int i = 0; i < _studentMarks.Length; i++)
+            //{
+            //    _studentMarks[i] = Helpers.ReadInt($"Enter marks for student {i + 1}: ");
+            //}
+
+            //Console.WriteLine();
+            //foreach(var marks in _studentMarks)
+            //{
+            //    Helpers.PrintLine($"Student Marks: {marks}");
+            //}
+            //Console.WriteLine();
+
+            //// Handle Ages Input and Display
+            //for (int i = 0; i < _studentAges.Length; i++)
+            //{
+            //    Helpers.GetStudentAge(out byte age);
+            //    _studentAges[i] = age;
+            //}
+
+            //Console.WriteLine();
+            //foreach (var age in _studentAges)
+            //{
+            //    Helpers.PrintLine($"Student Age: {age}");
+            //}
+            //Console.WriteLine();
+            #endregion
+
+            // Practice - Milestone 5
+            #region
+            // var student1 = ("John Doe", 18, 101);
+            var student2 = ("Jane Doe", 20, 102);
+
+            //Helpers.DisplayTuple(student1);
+            //Console.WriteLine();
+            //Helpers.DisplayTuple(student2);
+
+            _students.Add(("John Doe", 18, 101));
+            _students.Add(student2);
+
+            foreach (var student in _students)
             {
-                _studentMarks[i] = Helpers.ReadInt($"Enter marks for student {i + 1}: ");
+                Helpers.DisplayTuple(student);
+                Console.WriteLine();
             }
 
-            Console.WriteLine();
-            foreach(var marks in _studentMarks)
-            {
-                Helpers.PrintLine($"Student Marks: {marks}");
-            }
-            Console.WriteLine();
+            Student s1 = new Student();
+            Student s2 = new("John");
+            Student s3 = new Student("Alice");
+            Student s4 = new();
 
-            // Handle Ages Input and Display
-            for (int i = 0; i < _studentAges.Length; i++)
-            {
-                Helpers.GetStudentAge(out byte age);
-                _studentAges[i] = age;
-            }
+            s1.Age = 19;
+            s1.RollNumber = 201;
 
-            Console.WriteLine();
-            foreach (var age in _studentAges)
-            {
-                Helpers.PrintLine($"Student Age: {age}");
-            }
-            Console.WriteLine();
+            s2.Age = 21;
+
+            s3.RollNumber = 202;
+
+            Helpers.PrintLine($"Student Name: {s1.Name}, Age: {s1.Age}, Roll Number: {s1.RollNumber}");
+            Helpers.PrintLine($"Student Name: {s2.Name}, Age: {s2.Age}, Roll Number: {s2.RollNumber}");
+            Helpers.PrintLine($"Student Name: {s3.Name}, Age: {s3.Age}, Roll Number: {s3.RollNumber}");
+            Helpers.PrintLine($"Student Name: {s4.Name}, Age: {s4.Age}, Roll Number: {s4.RollNumber}");
             #endregion
         }
     }
@@ -142,6 +197,13 @@ namespace CampusManagementSystem
             }
 
             return result;
+        }
+
+        public static void DisplayTuple((string, int, int) tuple)
+        {
+            PrintLine($"Name: {tuple.Item1}");
+            PrintLine($"Age: {tuple.Item2}");
+            PrintLine($"Roll Number: {tuple.Item3}");
         }
     }
 }

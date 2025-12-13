@@ -5,6 +5,8 @@ namespace CampusManagementSystem
     class Program
     {
         public static List<string> _students = [];
+        public static int[] _studentMarks = new int[5];
+        public static int[] _studentAges = new int[5];
 
         public static void Main(string[] args)
         {
@@ -26,34 +28,64 @@ namespace CampusManagementSystem
 
             // Practice - Milestone 3
             #region
-            for (int i = 0; i < 5; i++)
-            {
-                Helpers.GetStudentName(out string studentName);
-                _students.Add(studentName);
-            }
+            //for (int i = 0; i < 5; i++)
+            //{
+            //    Helpers.GetStudentName(out string studentName);
+            //    _students.Add(studentName);
+            //}
 
-            foreach(var student in _students)
+            //foreach(var student in _students)
+            //{
+            //    Helpers.PrintLine($"Student Name: {student}");
+            //}
+
+            //Console.WriteLine();
+            //// Update student at index 2
+            //Helpers.GetStudentName(out string updatedName);
+            //_students[2] = updatedName;
+
+            //// Delete student at index 3
+            //_students.RemoveAt(3);
+
+            //// Add a new student
+            //Helpers.GetStudentName(out string newStudentName);
+            //_students.Add(newStudentName);
+
+            //Helpers.PrintLine("Updated Student List:");
+            //foreach(var student in _students)
+            //{
+            //    Helpers.PrintLine($"Student Name: {student}");
+            //}
+            #endregion
+
+            // Practice - Milestone 4
+            #region
+            // Handle Marks Input and Display
+            for (int i = 0; i < _studentMarks.Length; i++)
             {
-                Helpers.PrintLine($"Student Name: {student}");
+                _studentMarks[i] = Helpers.ReadInt($"Enter marks for student {i + 1}: ");
             }
 
             Console.WriteLine();
-            // Update student at index 2
-            Helpers.GetStudentName(out string updatedName);
-            _students[2] = updatedName;
-
-            // Delete student at index 3
-            _students.RemoveAt(3);
-
-            // Add a new student
-            Helpers.GetStudentName(out string newStudentName);
-            _students.Add(newStudentName);
-
-            Helpers.PrintLine("Updated Student List:");
-            foreach(var student in _students)
+            foreach(var marks in _studentMarks)
             {
-                Helpers.PrintLine($"Student Name: {student}");
+                Helpers.PrintLine($"Student Marks: {marks}");
             }
+            Console.WriteLine();
+
+            // Handle Ages Input and Display
+            for (int i = 0; i < _studentAges.Length; i++)
+            {
+                Helpers.GetStudentAge(out byte age);
+                _studentAges[i] = age;
+            }
+
+            Console.WriteLine();
+            foreach (var age in _studentAges)
+            {
+                Helpers.PrintLine($"Student Age: {age}");
+            }
+            Console.WriteLine();
             #endregion
         }
     }
@@ -88,7 +120,7 @@ namespace CampusManagementSystem
         {
             Print("Enter student age: ");
 
-            while (!byte.TryParse(Console.ReadLine(), out studentAge) || (studentAge <= 0 || studentAge >= 50))
+            while (!byte.TryParse(Console.ReadLine(), out studentAge) || studentAge <= 0 || studentAge >= 50)
             {
                 Print("Invalid age. Please enter a valid age: ");
             }
@@ -97,6 +129,19 @@ namespace CampusManagementSystem
         public static void DisplayStudentDetails(string name, byte age)
         {
             PrintLine($"\nStudent Name: {name}, Age: {age}\n");
+        }
+
+        public static int ReadInt(string prompt)
+        {
+            int result;
+            Print(prompt);
+
+            while (!int.TryParse(Console.ReadLine(), out result))
+            {
+                Print("Invalid input. " + prompt);
+            }
+
+            return result;
         }
     }
 }

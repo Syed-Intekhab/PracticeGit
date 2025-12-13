@@ -4,7 +4,9 @@ namespace CampusManagementSystem
 {
     class Program
     {
-        static void Main(string[] args)
+        public static List<string> _students = [];
+
+        public static void Main(string[] args)
         {
             Helpers.PrintLine("====================== Welcome to Campus ======================");
             Helpers.PrintLine("1. Add Student");
@@ -14,9 +16,45 @@ namespace CampusManagementSystem
             Helpers.PrintLine("5. Exit");
             Helpers.PrintLine("===============================================================\n\n");
 
-            Helpers.GetStudentName(out string studentName);
-            Helpers.GetStudentAge(out byte studentAge);
-            Helpers.DisplayStudentDetails(studentName, studentAge);
+
+            // Practice - Milestone 1 and 2
+            #region
+            //Helpers.GetStudentName(out string studentName);
+            //Helpers.GetStudentAge(out byte studentAge);
+            //Helpers.DisplayStudentDetails(studentName, studentAge);
+            #endregion
+
+            // Practice - Milestone 3
+            #region
+            for (int i = 0; i < 5; i++)
+            {
+                Helpers.GetStudentName(out string studentName);
+                _students.Add(studentName);
+            }
+
+            foreach(var student in _students)
+            {
+                Helpers.PrintLine($"Student Name: {student}");
+            }
+
+            Console.WriteLine();
+            // Update student at index 2
+            Helpers.GetStudentName(out string updatedName);
+            _students[2] = updatedName;
+
+            // Delete student at index 3
+            _students.RemoveAt(3);
+
+            // Add a new student
+            Helpers.GetStudentName(out string newStudentName);
+            _students.Add(newStudentName);
+
+            Helpers.PrintLine("Updated Student List:");
+            foreach(var student in _students)
+            {
+                Helpers.PrintLine($"Student Name: {student}");
+            }
+            #endregion
         }
     }
 

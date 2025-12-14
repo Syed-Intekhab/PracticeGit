@@ -362,7 +362,7 @@ namespace CampusManagementSystem
 
             // Practice - Milestone 9 (Added UI class)
 
-            // Practice - Milestone 10
+            // Practice - Milestone 10 / Milestone 11 / Milestone 12
             #region
             SchoolRepository repo = new();
             StudentManager students = new(repo);
@@ -424,7 +424,15 @@ namespace CampusManagementSystem
                         break;
                     case "4":
                         id = Helpers.ReadInt("Enter student id: ");
-                        Helpers.Print($"Are you sure you wanna delete {id} student? Y/N: ");
+                        try
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        finally
+                        {
+                            Helpers.Print($"Are you sure you wanna delete {id} student? Y/N: ");
+                            Console.ResetColor();
+                        }
                         if (char.ToUpperInvariant(Console.ReadLine()?[0] ?? 'N') == 'Y')
                         {
                             if (students.RemoveStudentById(id))
@@ -473,6 +481,10 @@ namespace CampusManagementSystem
 
                         break;
                     case "8":
+                        id = Helpers.ReadInt("Enter student id to get admission number: ");
+                        students.DisplayStudentAdmissionNumbers(id);
+                        break;
+                    case "9":
                         UI.DisplayExit();
                         return;
                     default:

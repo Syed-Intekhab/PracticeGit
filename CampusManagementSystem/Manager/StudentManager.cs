@@ -59,5 +59,20 @@ namespace CampusManagementSystem.Manager
         {
             return _repository.Students.Count;
         }
+
+        // Student admission number
+        public void DisplayStudentAdmissionNumbers(int id)
+        {
+            Student? student = _repository.Students.FirstOrDefault(s => s.Id == id);
+
+            if (student != null)
+            {
+                Helpers.PrintMessage($"Student Name: {student.Name}\nStudent Admission Number: {student.AdmissionNumber}", ConsoleColor.Yellow);
+            }
+            else
+            {
+                Helpers.PrintMessage("Student not found.", ConsoleColor.Red);
+            }
+        }
     }
 }

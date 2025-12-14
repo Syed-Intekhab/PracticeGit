@@ -3,7 +3,7 @@
     internal class Student(int id, string name, byte age, string email)
     {
         // private byte _age;
-
+        public Guid AdmissionNumber { get; } = Guid.NewGuid(); // Milestone 12 Assign a unique id to each instance
         public int Id { get; set; } = id;
         public string Name { get; set; } = name;
         public byte Age { get; set; } = age;

@@ -9,6 +9,19 @@ namespace CampusManagementSystem
             Console.WriteLine(val);
         }
 
+        public static void PrintMessage(string val, ConsoleColor color)
+        {
+            try
+            {
+                Console.ForegroundColor = color;
+            }
+            finally
+            {
+                Console.WriteLine(val);
+                Console.ResetColor();
+            }
+        }
+
         public static void Print(string val)
         {
             Console.Write(val);

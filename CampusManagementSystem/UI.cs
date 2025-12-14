@@ -4,27 +4,36 @@
     {
         public static void DisplayMenu()
         {
-            Helpers.PrintLine("====================== Welcome to Campus ======================");
-            Helpers.PrintLine("1. Add Student");
-            Helpers.PrintLine("2. View Students");
-            Helpers.PrintLine("3. Update Student");
-            Helpers.PrintLine("4. Delete Student");
-            Helpers.PrintLine("5. Search Student by ID");
-            Helpers.PrintLine("6. Count Students");
-            Helpers.PrintLine("7. Get Students by Age Range");
-            Helpers.PrintLine("8. Exit");
-            Helpers.PrintLine("===============================================================\n");
+            Helpers.PrintMessage("====================== Welcome to Campus ======================", ConsoleColor.Green);
+            Helpers.PrintMessage("1. Add Student", ConsoleColor.Blue);
+            Helpers.PrintMessage("2. View Students", ConsoleColor.Blue);
+            Helpers.PrintMessage("3. Update Student", ConsoleColor.Blue);
+            Helpers.PrintMessage("4. Delete Student", ConsoleColor.Blue);
+            Helpers.PrintMessage("5. Search Student by ID", ConsoleColor.Blue);
+            Helpers.PrintMessage("6. Count Students", ConsoleColor.Blue);
+            Helpers.PrintMessage("7. Get Students by Age Range", ConsoleColor.Blue);
+            Helpers.PrintMessage("8. Get Student Admission Number By ID", ConsoleColor.Blue);
+            Helpers.PrintMessage("8. Exit", ConsoleColor.Blue);
+            Helpers.PrintMessage("===============================================================\n", ConsoleColor.Green);
         }
 
         public static void DisplayExit()
         {
-            Helpers.PrintLine("\n\n===============================================================");
+            Helpers.PrintMessage("\n\n===============================================================", ConsoleColor.Blue);
             foreach (char c in "Exiting the program. Goodbye!")
             {
-                Helpers.Print(c.ToString());
-                Thread.Sleep(60);
+                try
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                finally
+                {
+                    Helpers.Print(c.ToString());
+                    Console.ResetColor();
+                }
+                Thread.Sleep(50);
             }
-            Helpers.PrintLine("\n===============================================================");
+            Helpers.PrintMessage("\n===============================================================", ConsoleColor.Blue);
         }
     }
 }

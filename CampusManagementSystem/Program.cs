@@ -1,4 +1,5 @@
 ﻿using CampusManagementSystem.Data;
+using CampusManagementSystem.Manager;
 using CampusManagementSystem.Models;
 
 namespace CampusManagementSystem
@@ -242,55 +243,177 @@ namespace CampusManagementSystem
 
             // Practice - Milestone 8
             #region
-            SchoolRepository repo = new();
+            //SchoolRepository repo = new();
 
-            repo.AddStudent(new Student(1, "Alice Smith", 14, "alice.smith@example.com"));
-            repo.AddStudent(new Student(2, "Bob Johnson", 15, "bob.johnson@example.com" ));
-            repo.AddStudent(new Student(3, "Carol Williams", 16, "carol.williams@example.com"));
-            repo.AddStudent(new Student(4, "David Brown", 17, "david.brown@example.com"));
-            repo.AddStudent(new Student(5, "Eve Davis", 18, "eve.davis@example.com"));
-            repo.AddStudent(new Student(6, "Frank Miller", 19, "frank.miller@example.com"));
-            repo.AddStudent(new Student(7, "Grace Wilson", 20, "grace.wilson@example.com"));
-            repo.AddStudent(new Student(8, "Hank Moore", 21, "hank.moore@example.com"));
-            repo.AddStudent(new Student(9, "Ivy Taylor", 22, "ivy.taylor@example.com"));
-            repo.AddStudent(new Student(10, "Jack Anderson", 23, "jack.anderson@example.com"));
+            //repo.AddStudent(new Student(1, "Alice Smith", 14, "alice.smith@example.com"));
+            //repo.AddStudent(new Student(2, "Bob Johnson", 15, "bob.johnson@example.com" ));
+            //repo.AddStudent(new Student(3, "Carol Williams", 16, "carol.williams@example.com"));
+            //repo.AddStudent(new Student(4, "David Brown", 17, "david.brown@example.com"));
+            //repo.AddStudent(new Student(5, "Eve Davis", 18, "eve.davis@example.com"));
+            //repo.AddStudent(new Student(6, "Frank Miller", 19, "frank.miller@example.com"));
+            //repo.AddStudent(new Student(7, "Grace Wilson", 20, "grace.wilson@example.com"));
+            //repo.AddStudent(new Student(8, "Hank Moore", 21, "hank.moore@example.com"));
+            //repo.AddStudent(new Student(9, "Ivy Taylor", 22, "ivy.taylor@example.com"));
+            //repo.AddStudent(new Student(10, "Jack Anderson", 23, "jack.anderson@example.com"));
+
+            //while (true)
+            //{
+            //    Helpers.Print("\nEnter your choice: ");
+
+            //    int id;
+            //    IReadOnlyList<Student> students;
+
+            //    switch (Console.ReadLine())
+            //    {
+            //        case "1":
+            //            repo.AddStudent(Helpers.ReadStudent());
+            //            Console.WriteLine("Student added successfully!");
+            //            break;
+            //        case "2":
+            //            students = repo.GetAllStudents();
+            //            if (students.Count == 0)
+            //            {
+            //                Console.WriteLine("No students found!");
+            //                break;
+            //            }
+            //            foreach (var student in students)
+            //            {
+            //                Helpers.PrintLine(student.ToString());
+            //            }
+            //            break;
+            //        case "3":
+            //            id = Helpers.ReadInt("Enter student id to update: ");
+            //            students = repo.GetAllStudents();
+
+            //            if (students.FirstOrDefault(s => s.Id == id) == null)
+            //            {
+            //                Console.WriteLine("Student not found!");
+            //                break;
+            //            }
+
+            //            if (repo.UpdateStudentById(id, Helpers.ReadStudent()))
+            //            {
+            //                Console.WriteLine("Student updated successfully!");
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Student not found!");
+            //            }
+            //            break;
+            //        case "4":
+            //            id = Helpers.ReadInt("Enter student id: ");
+            //            Helpers.Print($"Are you sure you wanna delete {id} student? Y/N: ");
+            //            if (char.ToUpperInvariant(Console.ReadLine()?[0] ?? 'N') == 'Y')
+            //            {
+            //                if (repo.RemoveStudentById(id))
+            //                {
+            //                    Console.WriteLine("Student removed successfully!");
+            //                }
+            //                else
+            //                {
+            //                    Console.WriteLine("Student not found!");
+            //                }
+            //            }
+            //            else
+            //            {
+            //                Console.WriteLine("Delete operation cancelled.");
+            //            }
+            //            break;
+            //        case "5":
+            //            id = Helpers.ReadInt("Enter student id to search: ");
+            //            Student? studentFound = repo.GetStudentById(id);
+            //            if (studentFound is null)
+            //            {
+            //                Helpers.PrintLine("Student not found!");
+            //                break;
+            //            }
+            //            Helpers.PrintLine(studentFound.ToString());
+            //            break;
+            //        case "6":
+            //            int count = repo.CountStudents();
+            //            Helpers.PrintLine($"Total number of students: {count}");
+            //            break;
+            //        case "7":
+            //            int minAge = Helpers.ReadInt("Enter minimum age: ");
+            //            int maxAge = Helpers.ReadInt("Enter maximum age: ");
+
+            //            IEnumerable<Student> studentsRange = repo.GetStudentsByAgeRange(minAge, maxAge);
+
+            //            if (!studentsRange.Any())
+            //            {
+            //                Helpers.PrintLine("No students found in the specified age range!");
+            //            }
+
+            //            foreach (Student student in studentsRange)
+            //            {
+            //                Helpers.PrintLine(student.ToString());
+            //            }
+
+            //            break;
+            //        case "8":
+            //            UI.DisplayExit();
+            //            return;
+            //        default:
+            //            Console.WriteLine("Invalid choice!");
+            //            break;
+            //    }
+            //}
+            #endregion
+
+            // Practice - Milestone 9 (Added UI class)
+
+            // Practice - Milestone 10
+            #region
+            SchoolRepository repo = new();
+            StudentManager students = new(repo);
+
+            students.AddStudent(new Student(1, "Alice Smith", 14, "alice.smith@example.com"));
+            students.AddStudent(new Student(2, "Bob Johnson", 15, "bob.johnson@example.com"));
+            students.AddStudent(new Student(3, "Carol Williams", 16, "carol.williams@example.com"));
+            students.AddStudent(new Student(4, "David Brown", 17, "david.brown@example.com"));
+            students.AddStudent(new Student(5, "Eve Davis", 18, "eve.davis@example.com"));
+            students.AddStudent(new Student(6, "Frank Miller", 19, "frank.miller@example.com"));
+            students.AddStudent(new Student(7, "Grace Wilson", 20, "grace.wilson@example.com"));
+            students.AddStudent(new Student(8, "Hank Moore", 21, "hank.moore@example.com"));
+            students.AddStudent(new Student(9, "Ivy Taylor", 22, "ivy.taylor@example.com"));
+            students.AddStudent(new Student(10, "Jack Anderson", 23, "jack.anderson@example.com"));
 
             while (true)
             {
                 Helpers.Print("\nEnter your choice: ");
 
                 int id;
-                IReadOnlyList<Student> students;
+                IReadOnlyList<Student> filteredStudents;
 
                 switch (Console.ReadLine())
                 {
                     case "1":
-                        repo.AddStudent(Helpers.ReadStudent());
+                        students.AddStudent(Helpers.ReadStudent());
                         Console.WriteLine("Student added successfully!");
                         break;
                     case "2":
-                        students = repo.GetAllStudents();
-                        if (students.Count == 0)
+                        filteredStudents = students.GetAllStudents();
+                        if (filteredStudents.Count == 0)
                         {
                             Console.WriteLine("No students found!");
                             break;
                         }
-                        foreach (var student in students)
+                        foreach (var student in filteredStudents)
                         {
                             Helpers.PrintLine(student.ToString());
                         }
                         break;
                     case "3":
                         id = Helpers.ReadInt("Enter student id to update: ");
-                        students = repo.GetAllStudents();
+                        filteredStudents = students.GetAllStudents();
 
-                        if (students.FirstOrDefault(s => s.Id == id) == null)
+                        if (filteredStudents.FirstOrDefault(s => s.Id == id) == null)
                         {
                             Console.WriteLine("Student not found!");
                             break;
                         }
 
-                        if (repo.UpdateStudentById(id, Helpers.ReadStudent()))
+                        if (students.UpdateStudentById(id, Helpers.ReadStudent()))
                         {
                             Console.WriteLine("Student updated successfully!");
                         }
@@ -304,7 +427,7 @@ namespace CampusManagementSystem
                         Helpers.Print($"Are you sure you wanna delete {id} student? Y/N: ");
                         if (char.ToUpperInvariant(Console.ReadLine()?[0] ?? 'N') == 'Y')
                         {
-                            if (repo.RemoveStudentById(id))
+                            if (students.RemoveStudentById(id))
                             {
                                 Console.WriteLine("Student removed successfully!");
                             }
@@ -320,7 +443,7 @@ namespace CampusManagementSystem
                         break;
                     case "5":
                         id = Helpers.ReadInt("Enter student id to search: ");
-                        Student? studentFound = repo.GetStudentById(id);
+                        Student? studentFound = students.GetStudentById(id);
                         if (studentFound is null)
                         {
                             Helpers.PrintLine("Student not found!");
@@ -329,14 +452,14 @@ namespace CampusManagementSystem
                         Helpers.PrintLine(studentFound.ToString());
                         break;
                     case "6":
-                        int count = repo.CountStudents();
+                        int count = students.CountStudents();
                         Helpers.PrintLine($"Total number of students: {count}");
                         break;
                     case "7":
                         int minAge = Helpers.ReadInt("Enter minimum age: ");
                         int maxAge = Helpers.ReadInt("Enter maximum age: ");
 
-                        IEnumerable<Student> studentsRange = repo.GetStudentsByAgeRange(minAge, maxAge);
+                        IEnumerable<Student> studentsRange = students.GetStudentsByAgeRange(minAge, maxAge);
 
                         if (!studentsRange.Any())
                         {

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using CampusManagementSystem.Models;
 
 namespace CampusManagementSystem
 {
@@ -12,20 +12,20 @@ namespace CampusManagementSystem
         //public static int[] _studentAges = new int[5];
 
         // Milestone 5
-        public static List<(string, int, int)> _students = [];
+        //public static List<(string, int, int)> _students = [];
 
-        public struct Student(string name)
-        {
-            public string Name = name ?? "Unknown";
-            public int Age = -1;
-            public int RollNumber = -1;
+        //public struct Student(string name)
+        //{
+        //    public string Name = name ?? "Unknown";
+        //    public int Age = -1;
+        //    public int RollNumber = -1;
 
-            // Constructor
-            //public Student(string name)
-            //{
-            //    this.Name = name;
-            //}
-        }
+        //    // Constructor
+        //    //public Student(string name)
+        //    //{
+        //    //    this.Name = name;
+        //    //}
+        //}
 
         public static void Main(string[] args)
         {
@@ -109,101 +109,51 @@ namespace CampusManagementSystem
 
             // Practice - Milestone 5
             #region
-            // var student1 = ("John Doe", 18, 101);
-            var student2 = ("Jane Doe", 20, 102);
+            //// var student1 = ("John Doe", 18, 101);
+            //var student2 = ("Jane Doe", 20, 102);
 
-            //Helpers.DisplayTuple(student1);
-            //Console.WriteLine();
-            //Helpers.DisplayTuple(student2);
+            ////Helpers.DisplayTuple(student1);
+            ////Console.WriteLine();
+            ////Helpers.DisplayTuple(student2);
 
-            _students.Add(("John Doe", 18, 101));
-            _students.Add(student2);
+            //_students.Add(("John Doe", 18, 101));
+            //_students.Add(student2);
 
-            foreach (var student in _students)
-            {
-                Helpers.DisplayTuple(student);
-                Console.WriteLine();
-            }
+            //foreach (var student in _students)
+            //{
+            //    Helpers.DisplayTuple(student);
+            //    Console.WriteLine();
+            //}
 
-            Student s1 = new Student();
-            Student s2 = new("John");
-            Student s3 = new Student("Alice");
-            Student s4 = new();
+            //Student s1 = new Student();
+            //Student s2 = new("John");
+            //Student s3 = new Student("Alice");
+            //Student s4 = new();
 
-            s1.Age = 19;
-            s1.RollNumber = 201;
+            //s1.Age = 19;
+            //s1.RollNumber = 201;
 
-            s2.Age = 21;
+            //s2.Age = 21;
 
-            s3.RollNumber = 202;
+            //s3.RollNumber = 202;
 
-            Helpers.PrintLine($"Student Name: {s1.Name}, Age: {s1.Age}, Roll Number: {s1.RollNumber}");
-            Helpers.PrintLine($"Student Name: {s2.Name}, Age: {s2.Age}, Roll Number: {s2.RollNumber}");
-            Helpers.PrintLine($"Student Name: {s3.Name}, Age: {s3.Age}, Roll Number: {s3.RollNumber}");
-            Helpers.PrintLine($"Student Name: {s4.Name}, Age: {s4.Age}, Roll Number: {s4.RollNumber}");
+            //Helpers.PrintLine($"Student Name: {s1.Name}, Age: {s1.Age}, Roll Number: {s1.RollNumber}");
+            //Helpers.PrintLine($"Student Name: {s2.Name}, Age: {s2.Age}, Roll Number: {s2.RollNumber}");
+            //Helpers.PrintLine($"Student Name: {s3.Name}, Age: {s3.Age}, Roll Number: {s3.RollNumber}");
+            //Helpers.PrintLine($"Student Name: {s4.Name}, Age: {s4.Age}, Roll Number: {s4.RollNumber}");
             #endregion
-        }
-    }
 
-    class Helpers
-    {
-        public static void PrintLine(string val)
-        {
-            Console.WriteLine(val);
-        }
+            // Practice - Milestone 6
+            #region
+            //Student student = new Student(1, "Alice Smith", 20, "alice@example.com");
+            Student student = new(1, "Alice Smith", 20, "alice@example.com");
+            Teacher teacher = new(1, "Dr. John Doe", "Mathematics");
+            Course course = new(1, "Calculus", 4);
 
-        public static void Print(string val)
-        {
-            Console.Write(val);
-        }
-
-        public static void GetStudentName(out string studentName)
-        {
-            Print("Enter student name: ");
-            studentName = Console.ReadLine() ?? string.Empty;
-
-            while (string.IsNullOrWhiteSpace(studentName))
-            {
-                Print("Student name cannot be empty. Please enter a valid name: ");
-                studentName = Console.ReadLine() ?? string.Empty;
-            }
-
-            studentName = studentName.Trim();
-        }
-
-        public static void GetStudentAge(out byte studentAge)
-        {
-            Print("Enter student age: ");
-
-            while (!byte.TryParse(Console.ReadLine(), out studentAge) || studentAge <= 0 || studentAge >= 50)
-            {
-                Print("Invalid age. Please enter a valid age: ");
-            }
-        }
-
-        public static void DisplayStudentDetails(string name, byte age)
-        {
-            PrintLine($"\nStudent Name: {name}, Age: {age}\n");
-        }
-
-        public static int ReadInt(string prompt)
-        {
-            int result;
-            Print(prompt);
-
-            while (!int.TryParse(Console.ReadLine(), out result))
-            {
-                Print("Invalid input. " + prompt);
-            }
-
-            return result;
-        }
-
-        public static void DisplayTuple((string, int, int) tuple)
-        {
-            PrintLine($"Name: {tuple.Item1}");
-            PrintLine($"Age: {tuple.Item2}");
-            PrintLine($"Roll Number: {tuple.Item3}");
+            Helpers.PrintLine(student.ToString());
+            Helpers.PrintLine(teacher.ToString());
+            Helpers.PrintLine(course.ToString());
+            #endregion
         }
     }
 }

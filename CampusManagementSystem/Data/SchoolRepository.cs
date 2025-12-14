@@ -1,4 +1,5 @@
 ﻿using CampusManagementSystem.Models;
+using System.Dynamic;
 
 namespace CampusManagementSystem.Data
 {
@@ -34,6 +35,21 @@ namespace CampusManagementSystem.Data
             if (idx == -1) return false;
             _students[idx] = updatedStudent;
             return true;
+        }
+
+        public Student? GetStudentById(int id)
+        {
+            return _students.FirstOrDefault(s => s.Id == id);
+        }
+
+        public int CountStudents()
+        {
+            return _students.Count;
+        }
+
+        public IEnumerable<Student> GetStudentsByAgeRange(int minAge, int maxAge)
+        {
+            return _students.Where(s => s.Age >= minAge && s.Age <= maxAge);
         }
     }
 }

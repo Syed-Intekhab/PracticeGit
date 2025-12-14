@@ -30,7 +30,7 @@ namespace CampusManagementSystem
 
         public static void Main(string[] args)
         {
-            DisplayMenu();
+            UI.DisplayMenu();
 
 
             // Practice - Milestone 1 and 2
@@ -244,7 +244,6 @@ namespace CampusManagementSystem
             #region
             SchoolRepository repo = new();
 
-            // Add 10 default students (only if repository is empty) so age-range searches will return results.
             repo.AddStudent(new Student(1, "Alice Smith", 14, "alice.smith@example.com"));
             repo.AddStudent(new Student(2, "Bob Johnson", 15, "bob.johnson@example.com" ));
             repo.AddStudent(new Student(3, "Carol Williams", 16, "carol.williams@example.com"));
@@ -351,34 +350,14 @@ namespace CampusManagementSystem
 
                         break;
                     case "8":
-                        Helpers.PrintLine("\n\n===============================================================");
-                        foreach (char c in "Exiting the program. Goodbye!")
-                        {
-                            Helpers.Print(c.ToString());
-                            Thread.Sleep(60);
-                        }
-                        Helpers.PrintLine("\n===============================================================");
+                        UI.DisplayExit();
                         return;
                     default:
                         Console.WriteLine("Invalid choice!");
                         break;
-                    }
+                }
             }
             #endregion
-        }
-
-        public static void DisplayMenu()
-        {
-            Helpers.PrintLine("====================== Welcome to Campus ======================");
-            Helpers.PrintLine("1. Add Student");
-            Helpers.PrintLine("2. View Students");
-            Helpers.PrintLine("3. Update Student");
-            Helpers.PrintLine("4. Delete Student");
-            Helpers.PrintLine("5. Search Student by ID");
-            Helpers.PrintLine("6. Count Students");
-            Helpers.PrintLine("7. Get Students by Age Range");
-            Helpers.PrintLine("8. Exit");
-            Helpers.PrintLine("===============================================================\n");
         }
     }
 }

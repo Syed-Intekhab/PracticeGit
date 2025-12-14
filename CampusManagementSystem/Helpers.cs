@@ -35,6 +35,7 @@ namespace CampusManagementSystem
             while (!byte.TryParse(Console.ReadLine(), out studentAge) || studentAge <= 0 || studentAge >= 50)
             {
                 Print("Invalid age. Please enter a valid age: ");
+                //throw new ArgumentOutOfRangeException("Please enter a valid age!");
             }
         }
 

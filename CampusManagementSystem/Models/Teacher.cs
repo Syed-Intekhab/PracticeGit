@@ -1,11 +1,13 @@
 ﻿namespace CampusManagementSystem.Models
 {
-    internal class Teacher(int id, string name, string subject)
+    internal class Teacher(int id, string name, string subject) : Person(id, name)
     {
-        public int Id { get; set; } = id;
-        public string Name { get; set; } = name;
         public string Subject { get; set; } = subject;
 
+        public override void DisplayInfo()
+        {
+            throw new NotImplementedException();
+        }
         //public Teacher(int id, string name, string subject)
         //{
         //    Id = id;

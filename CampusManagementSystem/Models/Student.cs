@@ -1,14 +1,16 @@
 ﻿namespace CampusManagementSystem.Models
 {
-    internal class Student(int id, string name, byte age, string email)
+    internal class Student(int id, string name, byte age, string email) : Person(id, name)
     {
         // private byte _age;
         public Guid AdmissionNumber { get; } = Guid.NewGuid(); // Milestone 12 Assign a unique id to each instance
-        public int Id { get; set; } = id;
-        public string Name { get; set; } = name;
         public byte Age { get; set; } = age;
         public string Email { get; set; } = email;
 
+        public override void DisplayInfo()
+        {
+            throw new NotImplementedException();
+        }
         //public byte Age
         //{
         //    get { return _age; }

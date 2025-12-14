@@ -362,7 +362,7 @@ namespace CampusManagementSystem
 
             // Practice - Milestone 9 (Added UI class)
 
-            // Practice - Milestone 10 / Milestone 11 / Milestone 12
+            // Practice - Milestone 10 / Milestone 11 / Milestone 12 / Milestone 13 / Milestone 14 / Milestone 15
             #region
             SchoolRepository repo = new();
             StudentManager students = new(repo);

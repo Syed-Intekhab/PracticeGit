@@ -1,4 +1,6 @@
-﻿namespace CampusManagementSystem
+﻿using CampusManagementSystem.Models;
+
+namespace CampusManagementSystem
 {
     class Helpers
     {
@@ -59,6 +61,17 @@
             PrintLine($"Name: {tuple.Item1}");
             PrintLine($"Age: {tuple.Item2}");
             PrintLine($"Roll Number: {tuple.Item3}");
+        }
+
+        public static Student ReadStudent()
+        {
+            int id = ReadInt("Enter student id: ");
+            GetStudentName(out string studentName);
+            GetStudentAge(out byte studentAge);
+            Print("Enter student email: ");
+            string mail = Console.ReadLine() ?? "unknown@invalidmail.com";
+
+            return new Student(id, studentName, studentAge, mail);
         }
     }
 }

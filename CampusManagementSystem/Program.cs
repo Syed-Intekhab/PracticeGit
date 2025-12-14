@@ -1,4 +1,5 @@
-﻿using CampusManagementSystem.Models;
+﻿using CampusManagementSystem.Data;
+using CampusManagementSystem.Models;
 
 namespace CampusManagementSystem
 {
@@ -29,13 +30,7 @@ namespace CampusManagementSystem
 
         public static void Main(string[] args)
         {
-            Helpers.PrintLine("====================== Welcome to Campus ======================");
-            Helpers.PrintLine("1. Add Student");
-            Helpers.PrintLine("2. View Students");
-            Helpers.PrintLine("3. Update Student");
-            Helpers.PrintLine("4. Delete Student");
-            Helpers.PrintLine("5. Exit");
-            Helpers.PrintLine("===============================================================\n\n");
+            DisplayMenu();
 
 
             // Practice - Milestone 1 and 2
@@ -145,15 +140,116 @@ namespace CampusManagementSystem
 
             // Practice - Milestone 6
             #region
-            //Student student = new Student(1, "Alice Smith", 20, "alice@example.com");
-            Student student = new(1, "Alice Smith", 20, "alice@example.com");
-            Teacher teacher = new(1, "Dr. John Doe", "Mathematics");
-            Course course = new(1, "Calculus", 4);
+            ////Student student = new Student(1, "Alice Smith", 20, "alice@example.com");
+            //Student student = new(1, "Alice Smith", 20, "alice@example.com");
+            //Teacher teacher = new(1, "Dr. John Doe", "Mathematics");
+            //Course course = new(1, "Calculus", 4);
 
-            Helpers.PrintLine(student.ToString());
-            Helpers.PrintLine(teacher.ToString());
-            Helpers.PrintLine(course.ToString());
+            //Helpers.PrintLine(student.ToString());
+            //Helpers.PrintLine(teacher.ToString());
+            //Helpers.PrintLine(course.ToString());
             #endregion
+
+            // Practice - Milestone 7
+            #region
+            SchoolRepository repo = new();
+
+            //repo.AddStudent(new Student(1, "Alice Smith", 20, "alice@demo.com"));
+            //repo.AddStudent(new Student(2, "Bob Johnson", 22, "bob@demo.com"));
+            //repo.AddStudent(new Student(3, "Charlie Brown", 19, "charlie@example.com"));
+            //repo.AddStudent(new Student(4, "Diana Prince", 21, "diana@demo.com"));
+
+            //IReadOnlyList<Student> students = repo.GetAllStudents();
+
+            while (true)
+            {
+                Helpers.Print("\nEnter your choice: ");
+
+                int id;
+                IReadOnlyList<Student> students;
+
+                switch (Console.ReadLine())
+                {
+                    case "1":
+                        repo.AddStudent(Helpers.ReadStudent());
+                        Console.WriteLine("Student added successfully!");
+                        break;
+                    case "2":
+                        students = repo.GetAllStudents();
+                        if (students.Count == 0)
+                        {
+                            Console.WriteLine("No students found!");
+                            break;
+                        }
+                        foreach (var student in students)
+                        {
+                            Helpers.PrintLine(student.ToString());
+                        }
+                        break;
+                    case "3":
+                        id = Helpers.ReadInt("Enter student id to update: ");
+                        students = repo.GetAllStudents();
+
+                        if (students.FirstOrDefault(s => s.Id == id) == null)
+                        {
+                            Console.WriteLine("Student not found!");
+                            break;
+                        }
+
+                        if (repo.UpdateStudentById(id, Helpers.ReadStudent()))
+                        {
+                            Console.WriteLine("Student updated successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Student not found!");
+                        }
+                        break;
+                    case "4":
+                        id = Helpers.ReadInt("Enter student id: ");
+                        Helpers.Print($"Are you sure you wanna delete {id} student? Y/N: ");
+                        if (char.ToUpperInvariant(Console.ReadLine()?[0] ?? 'N') == 'Y')
+                        {
+                            if (repo.RemoveStudentById(id))
+                            {
+                                Console.WriteLine("Student removed successfully!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Student not found!");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine("Delete operation cancelled.");
+                        }
+                        break;
+                    case "5":
+                        Helpers.PrintLine("\n\n===============================================================");
+                        foreach (char c in "Exiting the program. Goodbye!")
+                        {
+                            Helpers.Print(c.ToString());
+                            Thread.Sleep(60);
+                        }
+                        Helpers.PrintLine("\n===============================================================");
+                        return;
+                    default:
+                        Console.WriteLine("Invalid choice!");
+                        break;
+                }
+            }
+            #endregion
+        }
+
+        public static void DisplayMenu()
+        {
+            Helpers.PrintLine("====================== Welcome to Campus ======================");
+            Helpers.PrintLine("1. Add Student");
+            Helpers.PrintLine("2. View Students");
+            Helpers.PrintLine("3. Update Student");
+            Helpers.PrintLine("4. Delete Student");
+            Helpers.PrintLine("5. Exit");
+            Helpers.PrintLine("===============================================================\n");
         }
     }
 }

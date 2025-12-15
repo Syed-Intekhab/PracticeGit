@@ -5,13 +5,15 @@
         static void Main(string[] args)
         {
             // int budget;
+            int[] expenses = new int[10];
+            int index = 0;
 
             // Take user input for name and budget
             Console.Write("Enter your name: ");
             string? name = Console.ReadLine();
 
             // Display welcome message
-            Console.WriteLine($"Welcome {name}! Your monthly budget is {GetValidatedBudget("Enter your monthly budget: ")}.\n");
+            Console.WriteLine($"Welcome {name}! Your monthly budget is {GetValidAmount("Enter your monthly budget: ")}.\n");
 
             // Show menu until user decides to exit
             while (true)
@@ -22,12 +24,14 @@
                 switch (choice)
                 {
                     case 1: 
-                        Console.WriteLine("Add Expense selected.");
-                        // Logic to add expense would go here
+                        expenses[index++] = GetValidAmount("Enter expense amount: ");
                         break;
                     case 2:
-                        Console.WriteLine("View Total Expenses selected.");
-                        // Logic to view total expenses would go here
+                        foreach (var expense in expenses)
+                        {
+                            if (expense != 0)
+                                Console.WriteLine($"Expense: {expense}");
+                        }
                         break;
                     case 3:
                         Console.WriteLine("Exiting the application. Goodbye!");
@@ -40,18 +44,18 @@
         }
 
         // Method to get and validate budget input
-        static int GetValidatedBudget(string message)
+        static int GetValidAmount(string message)
         {
-            int budget;
+            int amount;
 
             Console.Write(message);
             // Validate budget input (Loop until a valid integer is entered)
-            while (!int.TryParse(Console.ReadLine(), out budget))
+            while (!int.TryParse(Console.ReadLine(), out amount))
             {
                 Console.Write($"Invalid input. {message}");
             }
 
-            return budget;
+            return amount;
         }
 
         // App Menu

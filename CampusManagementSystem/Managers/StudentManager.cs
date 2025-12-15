@@ -1,7 +1,7 @@
 ﻿using CampusManagementSystem.Data;
 using CampusManagementSystem.Models;
 
-namespace CampusManagementSystem.Manager
+namespace CampusManagementSystem.Managers
 {
     internal class StudentManager
     {

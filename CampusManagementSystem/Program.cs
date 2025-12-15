@@ -1,5 +1,5 @@
 ﻿using CampusManagementSystem.Data;
-using CampusManagementSystem.Managers;
+using CampusManagementSystem.Manager;
 using CampusManagementSystem.Models;
 
 namespace CampusManagementSystem

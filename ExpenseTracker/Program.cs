@@ -47,7 +47,7 @@ namespace ExpenseTracker
             //}
             #endregion
 
-            //Milestone 6
+            //Milestone 6/7/8/9/10
             #region
             Expense[] expenses = new Expense[10];
             int index = 0;
@@ -56,13 +56,15 @@ namespace ExpenseTracker
             Console.Write("Enter your name: ");
             string? name = Console.ReadLine();
 
+            double budget = GetValidAmount("Enter your monthly budget: ");
+
             // Display welcome message
-            Console.WriteLine($"Welcome {name}! Your monthly budget is {GetValidAmount("Enter your monthly budget: ")}.\n");
+            Console.WriteLine($"Welcome {name}! Your monthly budget is {budget}.\n");
 
             // Show menu until user decides to exit
             while (true)
             {
-                DisplayMenu();
+                UI.DisplayMenu();
                 int choice = int.Parse(Console.ReadLine() ?? "0");
 
                 switch (choice)
@@ -70,7 +72,7 @@ namespace ExpenseTracker
                     case 1:
                         if(index >= expenses.Length)
                         {
-                            Console.WriteLine("Expense limit reached. Cannot add more expenses.");
+                            UI.ErrorMessage("Expense limit reached. Cannot add more expenses.\n");
                             break;
                         }
                         Console.Write("Enter expense name: ");
@@ -80,6 +82,7 @@ namespace ExpenseTracker
                         string? expenseCategory = Console.ReadLine();
 
                         expenses[index++] = new Expense(expenseAmount, expenseName, expenseCategory);
+                        UI.SuccessMessage("Expense added successfully!\n");
                         break;
                     case 2:
                         foreach (var expense in expenses)
@@ -93,10 +96,13 @@ namespace ExpenseTracker
                         }
                         break;
                     case 3:
-                        Console.WriteLine("Exiting the application. Goodbye!");
+                        UI.WarningMessage($"Remaining amount: {Expense.GenerateReport(budget, expenses)}\n");
+                        break;
+                    case 4:
+                        UI.ExitMessage();
                         return;
                     default:
-                        Console.WriteLine("Invalid option. Please try again.");
+                        UI.ErrorMessage("Invalid option. Please try again.\n");
                         break;
                 }
             }
@@ -112,20 +118,10 @@ namespace ExpenseTracker
             // Validate budget input (Loop until a valid integer is entered)
             while (!int.TryParse(Console.ReadLine(), out amount))
             {
-                Console.Write($"Invalid input. {message}");
+                UI.ErrorMessage($"Invalid input. {message}");
             }
 
             return amount;
-        }
-
-        // App Menu
-        public static void DisplayMenu()
-        {
-            Console.WriteLine("\nExpense Tracker Menu:");
-            Console.WriteLine("1. Add Expense");
-            Console.WriteLine("2. View Total Expenses");
-            Console.WriteLine("3. Exit");
-            Console.Write("\nSelect an option: ");
         }
     }
 }
